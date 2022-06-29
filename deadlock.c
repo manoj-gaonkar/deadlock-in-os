@@ -6,11 +6,9 @@
 
 int up=0,down=0;
 int f=1;
-int aa=780,bb=380;
-int cc=600,dd=100,nn=100,ni=800,da=10;
-int ee=0,ff=0,m=700,n=200;
-int gg=700,hh=250,s=200,v=900,ss=0;
-int xxx=0;
+int cc=600,nn=100,ni=800,da=10;
+int m=700,n=200;
+int s=200,v=800;
 int spotdisp=1;
 
 
@@ -18,7 +16,7 @@ void renderBitmapString(float x,float y,const char *string)
 {
 	const char *c;
 	glRasterPos2f(x,y);
-    	//glColor3f(1,0,0);
+    	
 	for (c=string;*c !='\0';c++)
 	glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,*c) ;
 
@@ -33,8 +31,7 @@ void BitmapString(float x,float y,const char *string)
 }
 void myinit()
 {
-    	glClearColor(0.71875,0.9140625,0.97265625,1.0);
-    	glColor3f(0.0,0.0,0.0);
+    	glClearColor(0,0,0,1.0);
      	glMatrixMode(GL_PROJECTION);
     	gluOrtho2D(0,1000,0,1000);
     	glMatrixMode(GL_MODELVIEW);
@@ -55,14 +52,24 @@ void SpecialKey(int key,int x,int y){
 
 
 
-void bean(){
-	glColor3f(0,0.7,0.5);//white shirt
+	void bean()
+	{
+	glColor3f(0.29,1,0.47);
 	glBegin(GL_POLYGON);
 	glVertex2f(20,90);
-	//glVertex2f(40,100);
-	//glVertex2f(40,150);
+	
 	glVertex2f(60,150);
-	//glVertex2f(60,100);
+	
+	glVertex2f(80,90);
+	glEnd();
+	}
+	
+	void mister()
+	{
+	glColor3f(0.55,0.30,1);
+	glBegin(GL_POLYGON);
+	glVertex2f(20,90);
+	glVertex2f(60,150);
 	glVertex2f(80,90);
 	glEnd();
 	}
@@ -88,10 +95,9 @@ void create_menu(int choice){
 
 }
 
-//method to handle keyboard inputs keyboard-
+
 void keyboard( unsigned char key, int x, int y )
 {
-  //handle --> press any key to continue
   	if(key=='b'||key=='B'){
      	f=1;
   	}
@@ -112,24 +118,18 @@ void keyboard( unsigned char key, int x, int y )
 void scene2(){
 	
 	
-	glColor3f(0,0,0);//TEEEEEEEEEEESTTTTTT
+	glColor3f(0,0,0);
 	glLineWidth(5);
 	glBegin(GL_POLYGON);
-	//glVertex2i(0,900);
-//	glVertex2i(300,900);
-	//glVertex2i(800,20);
-	//glVertex2i(700,20);
-	//glVertex2i(200,800);
+	glColor3f(0,0.5,0.5);
 	glVertex2i(0,800);
 	glVertex2i(0,900);
-	
-	
-	glColor3f(0.5,0.5,0);
 	glEnd();
+	
 	glBegin(GL_POLYGON);
 	glVertex2i(0,0);
 	glVertex2i(700,0);
-	glVertex2i(800,20);
+	glVertex2i(800,0);
 	glVertex2i(300,800);
 	glVertex2i(0,800);
 	
@@ -151,80 +151,79 @@ void next()
 	glColor3f(1,1,1);
 	 //DrawCircle(150,900.0,30.0,100);
 	scene2();
-	glColor3f(0,1,1);//background
-	glBegin(GL_POLYGON);
-	glVertex2i(0,0);
-	glVertex2i(1000,0);
-	glVertex2i(1000,75);
-	glVertex2i(0,75);
-	glEnd();	
+	
 	glPushMatrix();
 	glTranslatef(s,v,0);
 
-if(up==1 && s<500)
+if(up==1 && s<490)
 {
 	s++;
-if(v>600)v=v-.5;
-
-	bean();
-glPopMatrix();
-}
-	
-glFlush();
-	f==3; 
-//***********************************************************FOR BOTTOM TO TOP******************
-glPushMatrix();
-glTranslatef(m,n,0);
-	
-	if(up==1 && n<500)
-{
-	n++;
-if(m>350)m--;
+if(v>50)
+v=v-.8;
 
 	bean();
 	glPopMatrix();
 }
-//if(s>=490)
-//{	
-//	ss=1;
-//}
+	
+glFlush();
+	
+//***********************************************************FOR BOTTOM TO TOP******************
+glPushMatrix();
+glTranslatef(m,n,0);
+	
+	if(up==1 && n<480)
+{
+	n++;
+if(m>350)
+m--;
+
+	mister();
+	glPopMatrix();
+}
+
 
 
 	glFlush();	
 }
+
     	
 void mydisplay(){
-    	glClearColor(0.5,0,1,1.0);
-    	
-    	glColor3f(0.0,0.0,0.0);
-     	glMatrixMode(GL_PROJECTION);
-     	glLoadIdentity();
-    	gluOrtho2D(0,1000,0,1000);
+	
+    	glClear(GL_COLOR_BUFFER_BIT);
+    	glBegin(GL_QUADS);
+    	glColor3f(1,0,0);
+    	glVertex2f(0,0);
+    	glVertex2f(1000,0);
+    	glColor3f(0,0,1);
+    	glVertex2f(1000,1000);
+    	glVertex2f(0,1000);
+    	glEnd();
     	glMatrixMode(GL_MODELVIEW);
     	glLoadIdentity();
-    	glClear(GL_COLOR_BUFFER_BIT);
     	    	if(f==1){
-	//glLoadIdentity();
+
     	glColor3f(1,1,1);
     	renderBitmapString(380,850,"SDM INSTITUTE OF TECHNOLOGY");
-   	//renderBitmapString(470,800,"BY");
+    	glColor3f(1,1,0);
+    	renderBitmapString(120,690,"***TEAM MEMBERS***");
     	glColor3f(1,1,1);
-    	renderBitmapString(750,620,"KUMAR SAMARTHA");
-    	renderBitmapString(750,590,"4SU19CS043");
+    	renderBitmapString(120,600,"KUMAR SAMARTHA");
+    	renderBitmapString(120,570,"4SU19CS043");
     	glColor3f(1,1,1);
-    	renderBitmapString(120,620,"MANOJ GAONKAR");
-    	renderBitmapString(120,590,"4SU19CS052");
+    	renderBitmapString(120,520,"LAXMI MAGADUM");
+    	renderBitmapString(120,490,"4SU19CS045");
     	glColor3f(1,1,1);
-    	renderBitmapString(750,540,"MALLIKA L");
-    	renderBitmapString(750,500,"4SU19CS051");
+    	renderBitmapString(120,440,"MANOJ GAONKAR");
+    	renderBitmapString(120,410,"4SU19CS052");
     	glColor3f(1,1,1);
-    	renderBitmapString(120,540,"LAXMI MAGADUM");
-    	renderBitmapString(120,500,"4SU19CS045");
+    	renderBitmapString(120,370,"MALLIKA L");
+    	renderBitmapString(120,340,"4SU19CS051");
+    	glColor3f(1,1,0);
+    	renderBitmapString(750,690,"***GUIDE***");
     	glColor3f(1,1,1);
-    	renderBitmapString(500,450,"GUIDE");
-    	renderBitmapString(500,410,"Mr. PRADEEP K RAO");
+    	renderBitmapString(750,600,"Mr. PRADEEP K RAO");
     	glColor3f(1,1,1);
-    	renderBitmapString(300,250,"DEADLOCK REPRESENTAION");
+    	renderBitmapString(380,250,"DEADLOCK IN REPRESENTATION");
     	BitmapString(700,50,"RIGHT CLICK ANYWHERE TO CONTINUE");
     	glutPostRedisplay();
    	 }
@@ -259,8 +258,8 @@ void mydisplay(){
 	glTranslatef(cc+300,nn,0);
 	if(cc>400)
 	cc--;	
-	glScalef(0.9,0.9,0);
-	bean();
+	glScalef(1,1,0);
+	mister();
 	glPopMatrix();
 
 	glPushMatrix();
@@ -286,14 +285,14 @@ void mydisplay(){
 	renderBitmapString(300,450,"Press I to Introduction");
 	renderBitmapString(300,550,"Press D to simulation");
 	renderBitmapString(300,650,"Press E to EXIT");
-	//renderBitmapString(300,250,"REQUEST EDGE");
+	
 	}
    	 
    	 
    	 if(f==5)
 	{
-	//scene4();
-	glColor3f(0,1,1);//background
+	
+	glColor3f(0,1,1);
 	glBegin(GL_POLYGON);
 	glVertex2i(0,0);
 	glVertex2i(1000,0);
@@ -310,7 +309,7 @@ void mydisplay(){
 	}
    	 if(f==6)
 	{
-	glColor3f(1,1,1);//background
+	glColor3f(1,1,1);
 	glBegin(GL_POLYGON);
 	
 	glEnd();
@@ -332,7 +331,7 @@ int main(int argc,char**argv)
 {
 	glutInit(&argc,argv);
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
-	glutInitWindowSize(1000,1000);
+	glutInitWindowSize(1920,1000);
 	glutInitWindowPosition(0,0);
 	
 	glutCreateWindow("DEADLOCK IN OS");
@@ -342,7 +341,6 @@ int main(int argc,char**argv)
 	glutAddMenuEntry("INTRODUCTION",1);
 	glutAddMenuEntry("ABOUT",4);
 	glutAddMenuEntry("HELP KEY",3);
-	//glutAddMenuEntry("*****EXTRA****",4);
 	glutAddMenuEntry("DEADLOCK",2);
 	glutAddMenuEntry("EXIT",5);
 
@@ -354,7 +352,6 @@ int main(int argc,char**argv)
 	glutMainLoop();
 	return 0;
 }
-
 
 
 
